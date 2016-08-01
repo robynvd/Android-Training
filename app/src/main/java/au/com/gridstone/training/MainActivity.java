@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements NetworkManager.Ob
 
     networkManager = NetworkManager.getInstance();
     networkManager.registerObserver(this);
-    networkManager.fetchImages();
+    networkManager.fetchImages(this);
   }
 
   public void notify(ArrayList<Image> imageList) {

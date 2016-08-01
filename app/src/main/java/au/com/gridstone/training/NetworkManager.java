@@ -1,6 +1,8 @@
 package au.com.gridstone.training;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -41,7 +43,9 @@ public class NetworkManager {
     this.observer = null;
   }
 
-  public void fetchImages() {
+  public void fetchImages(Context context) {
+
+    final Context appContext = context;
 
     //Check if imageList is null or empty, if not return the imageList, otherwise perform network request
     if (imageList != null && !imageList.isEmpty()) {
@@ -90,7 +94,8 @@ public class NetworkManager {
       }
 
       @Override public void onFailure(Call<ImageResponse> call, Throwable t) {
-        Log.d("CallBack", " Throwable is " + t);
+        Toast toast = Toast.makeText(appContext, "Error fetching images", Toast.LENGTH_SHORT);
+        toast.show();
       }
     });
   }
